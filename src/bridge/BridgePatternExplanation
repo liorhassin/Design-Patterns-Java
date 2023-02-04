@@ -1,0 +1,18 @@
+Using bridge pattern we can face the problem of duplicate code.
+Such problem that could occur when I have 2 different Task classes(Task1, Task2).
+Which implements Task Interface each override doTask to do something else.
+But when it comes to different ways of saving/logging the data from the task,
+Which can cause duplicate code because we need to write the same logger twice.
+Once for Task1 and once for Task2.
+In this example we will have(DBTask1, DBTask2, FileTask1, FileTask2, SocketTask1, SocketTask2... And so on).
+Instead for better programming and good practice we want to use bridge pattern to face this issue.
+
+-> Task interface is our abstraction in this pattern.
+-> Logger interface is our implementor in this pattern.
+   Having the logger as our implementor we can now write different general loggers. for each way of saving data.
+   And each Task(Task1, Task2.. and so on) on the method doTask(Logger logger) will be dependant on a Logger type.
+   Now instead of using writeToLog we will use given logger which is being changed on run time.
+   logger.writeToLog(text);
+
+Loggers we have(DBLogger, FileLogger, SocketLogger... and so on)
+Now we can support infinite amount of Tasks and all of them can use which ever logger they need to save the data.
